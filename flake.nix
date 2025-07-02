@@ -4,7 +4,7 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     flake-nimble.url = "github:nix-community/flake-nimble";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";  # Или используйте стабильную версию
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
   
   outputs = { self, nixpkgs, flake-utils, flake-nimble }:
@@ -14,8 +14,7 @@
         pkgsWithNimble = pkgs.appendOverlays [ flake-nimble.overlay ];
         
         devShell = pkgs.mkShell {
-          nativeBuildInputs = with pkgsWithNimble; [ nim nimlsp go-task ];
+          nativeBuildInputs = with pkgsWithNimble; [ nim go-task ];
         };
       });
 }
-
